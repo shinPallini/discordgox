@@ -1,4 +1,4 @@
-module discordgox
+module github.com/shinPallini/discordgox
 
 go 1.18
 
