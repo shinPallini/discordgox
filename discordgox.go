@@ -208,7 +208,7 @@ func NewMessageEmbedField(options ...MessageEmbedFieldOption) *discordgo.Message
 // MessageComponent構造体初期化のためのOptionと関数
 type ActionsRowOption func(*discordgo.ActionsRow)
 
-func AddLinkButton(label string, url string) ActionsRowOption {
+func SetLinkButton(label string, url string) ActionsRowOption {
 	return func(r *discordgo.ActionsRow) {
 		r.Components = append(r.Components, discordgo.Button{
 			Style: discordgo.LinkButton,
@@ -218,7 +218,7 @@ func AddLinkButton(label string, url string) ActionsRowOption {
 	}
 }
 
-func AddCustomButton(style discordgo.ButtonStyle, label string, customID string) ActionsRowOption {
+func SetCustomButton(style discordgo.ButtonStyle, label string, customID string) ActionsRowOption {
 	return func(r *discordgo.ActionsRow) {
 		r.Components = append(r.Components, discordgo.Button{
 			Style:    style,
@@ -228,7 +228,7 @@ func AddCustomButton(style discordgo.ButtonStyle, label string, customID string)
 	}
 }
 
-func AddSingleSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption) ActionsRowOption {
+func SetSingleSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption) ActionsRowOption {
 	return func(r *discordgo.ActionsRow) {
 		r.Components = append(r.Components, discordgo.SelectMenu{
 			CustomID: customID,
@@ -237,7 +237,7 @@ func AddSingleSelectMenu(customID string, selectOptions []discordgo.SelectMenuOp
 	}
 }
 
-func AddMultiSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption, min_value *int, max_value int) ActionsRowOption {
+func SetMultiSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption, min_value *int, max_value int) ActionsRowOption {
 	return func(r *discordgo.ActionsRow) {
 		r.Components = append(r.Components, discordgo.SelectMenu{
 			CustomID:  customID,
@@ -260,13 +260,13 @@ func NewActionsRow(options ...ActionsRowOption) *discordgo.ActionsRow {
 // SelectMenuOption構造体初期化のためのOptionと関数
 type SelectMenuOptionOption func(*discordgo.SelectMenuOption)
 
-func AddSelectDescription(d string) SelectMenuOptionOption {
+func SetSelectDescription(d string) SelectMenuOptionOption {
 	return func(o *discordgo.SelectMenuOption) {
 		o.Description = d
 	}
 }
 
-func AddSelectDefaultEmoji(s string) SelectMenuOptionOption {
+func SetSelectDefaultEmoji(s string) SelectMenuOptionOption {
 	return func(o *discordgo.SelectMenuOption) {
 		o.Emoji = discordgo.ComponentEmoji{
 			Name: s,
@@ -274,7 +274,7 @@ func AddSelectDefaultEmoji(s string) SelectMenuOptionOption {
 	}
 }
 
-func AddSelectCustomEmoji(s string, id string) SelectMenuOptionOption {
+func SetSelectCustomEmoji(s string, id string) SelectMenuOptionOption {
 	return func(o *discordgo.SelectMenuOption) {
 		o.Emoji = discordgo.ComponentEmoji{
 			Name: s,
