@@ -124,6 +124,16 @@ func SetColor(i int) MessageEmbedOption {
 	}
 }
 
+func SetEmbedAuthor(name, url, iconURL string) MessageEmbedOption {
+	return func(e *discordgo.MessageEmbed) {
+		e.Author = &discordgo.MessageEmbedAuthor{
+			Name:    name,
+			URL:     url,
+			IconURL: iconURL,
+		}
+	}
+}
+
 func SetEmbedField(ef []*discordgo.MessageEmbedField) MessageEmbedOption {
 	return func(e *discordgo.MessageEmbed) {
 		e.Fields = append(e.Fields, ef...)
