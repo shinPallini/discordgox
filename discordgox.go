@@ -202,22 +202,24 @@ func SetCustomButton(style discordgo.ButtonStyle, label string, customID string)
 	}
 }
 
-func SetSingleSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption) ActionsRowOption {
+func SetSingleSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption, placeholder string) ActionsRowOption {
 	return func(r *discordgo.ActionsRow) {
 		r.Components = append(r.Components, discordgo.SelectMenu{
-			CustomID: customID,
-			Options:  selectOptions,
+			CustomID:    customID,
+			Options:     selectOptions,
+			Placeholder: placeholder,
 		})
 	}
 }
 
-func SetMultiSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption, min_value *int, max_value int) ActionsRowOption {
+func SetMultiSelectMenu(customID string, selectOptions []discordgo.SelectMenuOption, min_value *int, max_value int, placeholder string) ActionsRowOption {
 	return func(r *discordgo.ActionsRow) {
 		r.Components = append(r.Components, discordgo.SelectMenu{
-			CustomID:  customID,
-			Options:   selectOptions,
-			MinValues: min_value,
-			MaxValues: max_value,
+			CustomID:    customID,
+			Options:     selectOptions,
+			MinValues:   min_value,
+			MaxValues:   max_value,
+			Placeholder: placeholder,
 		})
 	}
 }
